@@ -21,7 +21,8 @@ langchain-deepseek>=0.1.*
 # Async Task Queue
 celery>=5.4.*
 
-# Knowledge Graph (in-memory graph for V1)
+# Knowledge Graph
+neo4j>=5.28.*
 networkx>=3.4.*
 
 # Object Storage (covers, file uploads)
