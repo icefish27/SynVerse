@@ -1,0 +1,37 @@
+fastapi==0.115.*
+uvicorn[standard]==0.34.*
+sqlalchemy==2.0.*
+asyncpg==0.30.*
+psycopg2-binary==2.9.*
+pgvector==0.3.*
+redis==5.2.*
+python-dotenv==1.1.*
+pydantic==2.10.*
+pydantic-settings==2.7.*
+httpx==0.28.*
+openai==1.68.*
+sentence-transformers==3.4.*
+alembic==1.14.*
+
+# AI Orchestration & Agent Framework
+langgraph>=1.0.*
+langchain>=0.3.*
+langchain-deepseek>=0.1.*
+
+# Async Task Queue
+celery>=5.4.*
+
+# Knowledge Graph (in-memory graph for V1)
+networkx>=3.4.*
+
+# Object Storage (covers, file uploads)
+minio>=7.2.*
+
+# Chinese Text Segmentation
+jieba>=0.42.*
+
+# File Upload Support
+python-multipart>=0.0.18
+
+# Async File Operations
+aiofiles>=24.0.*

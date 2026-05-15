@@ -1,0 +1,52 @@
+/* 全局样式重置：移除默认边距和内边距，使用border-box盒模型计算方式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 隐藏WebKit浏览器（如Chrome、Safari）的滚动条，提升视觉体验 */
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  /* 宽度占满视口 */
+  width: 100%;
+  /* 使用视口高度单位确保至少占满整个屏幕高度，支持滚动内容超出屏幕 */
+  min-height: 100vh;
+  /* 页面背景色 */
+  background-color: #f0f2f5;
+  /* 禁止双击缩放，仅允许垂直滚动（已注释，根据需要启用） */
+  /* touch-action: none;
+  touch-action: pan-y; */
+  /* 注释掉的height: 100%会导致内容超出时无法正常滚动 */
+  /* height: 100%; */
+}
+
+body {
+  /* 宽度占满视口 */
+  width: 100%;
+  /* 使用视口高度单位确保至少占满整个屏幕高度 */
+  min-height: 100vh;
+  /* 为iOS设备的安全区域预留空间（已注释，根据需要启用） */
+  /* padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom); */
+  /* 注释掉的height: 100%会导致内容超出时无法正常滚动 */
+  /* height: 100%; */
+}
+
+#app {
+  /* 根应用容器宽度占满视口 */
+  width: 100%;
+  /* 至少占满整个屏幕高度，允许内容撑开高度 */
+  min-height: 100vh;
+  /* 重置内边距 */
+  padding: 0;
+  /* 应用背景色（与html一致） */
+  background-color: #f0f2f5;
+  /* 允许内容溢出时滚动 */
+  overflow: scroll;
+  /* 注释掉的height: 100%会导致内容超出时无法正常滚动 */
+  /* height: 100%; */
+}

@@ -1,0 +1,37 @@
+# Mac
+.DS_Store
+
+# ── 历史代码参考（后期删除）──
+历史代码参考/
+
+# ── backend-fastapi ──
+backend-fastapi/__pycache__/
+backend-fastapi/**/__pycache__/
+backend-fastapi/*.pyc
+backend-fastapi/.venv/
+backend-fastapi/venv/
+backend-fastapi/.env
+backend-fastapi/*.egg-info/
+
+# ── front-vue ──
+front-vue/node_modules/
+front-vue/dist/
+front-vue/.env.development
+front-vue/.env.production
+
+
+# ── IDE ──
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── 敏感信息 ──
+AI参考信息/大模型密钥.md
+AI参考信息/局域网服务器信息.md
+
+# ── 大型语料 ──
+优秀小说原稿收集/
+
+# ── Claude 本地配置 ──
+.claude/settings.local.json
