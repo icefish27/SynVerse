@@ -6,13 +6,13 @@ AI 写作引擎后端，基于 FastAPI + PostgreSQL + Neo4j + DeepSeek。
 
 ```bash
 # 1. 安装依赖
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
 # 2. 配置环境变量（复制并编辑）
 cp .env.example .env
 
 # 3. 启动
-python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+python3 -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 启动后访问：
