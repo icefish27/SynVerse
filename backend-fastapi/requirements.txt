@@ -14,7 +14,7 @@ sentence-transformers==3.4.*
 alembic==1.14.*
 
 # AI Orchestration & Agent Framework
-langgraph>=1.0.*
+langgraph>=0.6.*
 langchain>=0.3.*
 langchain-deepseek>=0.1.*
 
@@ -23,7 +23,7 @@ celery>=5.4.*
 
 # Knowledge Graph
 neo4j>=5.28.*
-networkx>=3.4.*
+networkx>=3.0.*
 
 # Object Storage (covers, file uploads)
 minio>=7.2.*

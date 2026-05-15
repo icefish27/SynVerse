@@ -23,7 +23,7 @@ const serviceInstance = axios.create({
     import.meta.env.VITE_OPEN_PROXY === "true"
       ? import.meta.env.VITE_PROXY_URL
       : import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8080",
-  timeout: 5000,
+  timeout: 30000,
 });
 
 function getCurrentToken() {

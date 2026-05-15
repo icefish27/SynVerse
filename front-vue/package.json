@@ -9,11 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tiptap/extension-placeholder": "^2.16.0",
-    "@tiptap/starter-kit": "^2.16.0",
-    "@tiptap/vue-3": "^2.16.0",
+    "@tiptap/extension-placeholder": "^3.0.0",
+    "@tiptap/starter-kit": "^3.0.0",
+    "@tiptap/vue-3": "^3.0.0",
     "@yuandezuohua/liaokit": "^2.8.8",
-    "markstream-vue": "^1.0.0",
+    "markstream-vue": "^1.0.0-rc.0",
     "@vue-flow/background": "^1.3.2",
     "@vue-flow/controls": "^1.1.3",
     "@vue-flow/core": "^1.46.0",
