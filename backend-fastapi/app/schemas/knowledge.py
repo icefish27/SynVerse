@@ -28,7 +28,24 @@ class KnowledgeDocOut(BaseModel):
     chunk_count: int
     total_chars: int
     status: str
+    file_md5: Optional[str] = None
+    processing_progress: int = 0
+    processing_stage: Optional[str] = None
+    processing_log: list = []
     created_at: datetime
+
+    model_config = {"from_attributes": True}
+
+
+class KnowledgeProgressOut(BaseModel):
+    id: uuid.UUID
+    filename: str
+    status: str
+    chunk_count: int
+    total_chars: int
+    processing_progress: int
+    processing_stage: Optional[str]
+    processing_log: list
 
     model_config = {"from_attributes": True}
 

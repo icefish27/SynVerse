@@ -12,7 +12,7 @@ async def search_similar_chunks(
     query: str,
     scene_type: str = "",
     top_k: int = 5,
-    db: AsyncSession = None,
+    db: AsyncSession | None = None,
 ) -> list[dict]:
     """用嵌入向量检索最相似的段落。"""
     query_vec = embed_query(query)

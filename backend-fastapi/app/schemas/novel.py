@@ -80,6 +80,7 @@ class OutlineUpdate(BaseModel):
     character_setting: Optional[str] = None
     world_setting: Optional[str] = None
     full_outline: Optional[str] = None
+    volumes: Optional[list] = None
 
 
 class OutlineOut(BaseModel):
@@ -89,6 +90,7 @@ class OutlineOut(BaseModel):
     character_setting: Optional[str]
     world_setting: Optional[str]
     full_outline: Optional[str]
+    volumes: list
     version: int
     created_at: datetime
     updated_at: datetime

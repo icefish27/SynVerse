@@ -7,6 +7,12 @@ export const useKnowledgeStore = defineStore("knowledge", () => {
   const searchResults = ref([]);
   const loading = ref(false);
 
+  // 当前查看进度的文档
+  const activeDocId = ref(null);
+
+  // 轮询定时器
+  let _pollTimer = null;
+
   async function fetchDocuments() {
     loading.value = true;
     try {
@@ -24,10 +30,63 @@ export const useKnowledgeStore = defineStore("knowledge", () => {
       method: "post",
       data: form,
       headers: { "Content-Type": "multipart/form-data" },
-      timeout: 120000,
     });
     documents.value.unshift(data);
     return data;
+  }
+
+  async function startProcessing(docId) {
+    const data = await request({
+      url: `/api/knowledge/documents/${docId}/process`,
+      method: "post",
+    });
+    return data;
+  }
+
+  async function fetchProgress(docId) {
+    const data = await request({
+      url: `/api/knowledge/documents/${docId}/progress`,
+      method: "get",
+    });
+    // 更新本地文档列表中的进度
+    const idx = documents.value.findIndex((d) => d.id === docId);
+    if (idx > -1) {
+      documents.value[idx] = { ...documents.value[idx], ...data };
+    }
+    return data;
+  }
+
+  async function fetchContent(docId) {
+    const baseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+    const resp = await fetch(`${baseUrl}/api/knowledge/documents/${docId}/content`);
+    if (!resp.ok) {
+      const err = new Error(`请求失败 (${resp.status})`);
+      err.response = resp;
+      throw err;
+    }
+    return await resp.text();
+  }
+
+  function startPolling(docId, onDone) {
+    stopPolling();
+    activeDocId.value = docId;
+    _pollTimer = setInterval(async () => {
+      try {
+        const progress = await fetchProgress(docId);
+        if (progress.status === "ready" || progress.status === "error") {
+          stopPolling();
+          if (onDone) onDone(progress);
+        }
+      } catch { stopPolling(); }
+    }, 1500);
+  }
+
+  function stopPolling() {
+    if (_pollTimer) {
+      clearInterval(_pollTimer);
+      _pollTimer = null;
+    }
+    activeDocId.value = null;
   }
 
   async function deleteDocument(id) {
@@ -64,8 +123,18 @@ export const useKnowledgeStore = defineStore("knowledge", () => {
   }
 
   return {
-    documents, searchResults, examples, loading,
-    fetchDocuments, uploadDocument, deleteDocument, search,
+    documents, searchResults, examples, loading, activeDocId,
+    fetchDocuments, uploadDocument, startProcessing, fetchProgress,
+    fetchContent, startPolling, stopPolling, deleteDocument, search,
     fetchExamples, createExample, deleteExample,
   };
+}, {
+  persist: {
+    enabled: true,
+    strategies: [{
+      key: "pinia_knowledgestore",
+      storage: localStorage,
+      paths: ["documents", "searchResults", "examples"],
+    }],
+  },
 });

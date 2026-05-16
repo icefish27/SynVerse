@@ -35,5 +35,5 @@ async def delete_example(example_id: uuid.UUID, db: AsyncSession = Depends(get_d
     stmt = select(StyleExample).where(StyleExample.id == example_id)
     result = await db.execute(stmt)
     example = result.scalar_one()
-    await db.delete(example)
+    db.delete(example)
     await db.flush()

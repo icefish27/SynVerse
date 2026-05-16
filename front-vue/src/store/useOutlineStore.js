@@ -21,9 +21,33 @@ export const useOutlineStore = defineStore("outline", () => {
     return data;
   }
 
+  async function saveVolume(novelId, volume) {
+    const volumes = [...(outline.value?.volumes || [])];
+    const idx = volumes.findIndex((v) => v.volume_number === volume.volume_number);
+    if (idx > -1) volumes[idx] = volume;
+    else volumes.push(volume);
+    volumes.sort((a, b) => a.volume_number - b.volume_number);
+    return await updateOutline(novelId, { volumes });
+  }
+
+  async function deleteVolume(novelId, volumeNumber) {
+    const volumes = (outline.value?.volumes || []).filter(
+      (v) => v.volume_number !== volumeNumber
+    );
+    return await updateOutline(novelId, { volumes });
+  }
+
+  function getVolume(volumeNumber) {
+    return (outline.value?.volumes || []).find((v) => v.volume_number === volumeNumber);
+  }
+
   function reset() {
     outline.value = null;
   }
 
-  return { outline, loading, fetchOutline, updateOutline, reset };
+  return {
+    outline, loading,
+    fetchOutline, updateOutline, saveVolume, deleteVolume, getVolume,
+    reset,
+  };
 });

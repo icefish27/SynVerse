@@ -17,6 +17,10 @@ class KnowledgeDocument(Base):
     chunk_count: Mapped[int] = mapped_column(Integer, default=0)
     total_chars: Mapped[int] = mapped_column(Integer, default=0)
     status: Mapped[str] = mapped_column(String(30), default="processing")
+    file_md5: Mapped[Optional[str]] = mapped_column(String(64), unique=True, nullable=True)
+    processing_progress: Mapped[int] = mapped_column(Integer, default=0)
+    processing_stage: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    processing_log: Mapped[list] = mapped_column(JSONB, default=list)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
 

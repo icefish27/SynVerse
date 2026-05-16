@@ -75,12 +75,7 @@ const tabs = [
   { name: "NovelEditor", label: "小说模式" },
   { name: "BasicInfo", label: "基本信息" },
   { name: "CoreArchitecture", label: "核心架构" },
-  { name: "RhythmAnalysis", label: "节奏分析" },
-  { name: "ConsistencyKG", label: "一致性RAG引擎" },
   { name: "StyleRAG", label: "仿写RAG引擎" },
-  { name: "AgentManage", label: "多Agent智能体" },
-  { name: "Skills", label: "Skills" },
-  { name: "Workflow", label: "工作流编排" },
 ];
 
 const activeTab = computed(() => route.name);

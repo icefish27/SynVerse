@@ -80,5 +80,5 @@ async def delete_chapter(chapter_id: uuid.UUID, db: AsyncSession = Depends(get_d
     novel = res2.scalar_one()
     novel.total_chapters = max(0, (novel.total_chapters or 1) - 1)
     novel.total_words = max(0, (novel.total_words or 0) - (chapter.word_count or 0))
-    await db.delete(chapter)
+    db.delete(chapter)
     await db.flush()

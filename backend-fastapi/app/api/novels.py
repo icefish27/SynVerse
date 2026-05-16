@@ -63,7 +63,7 @@ async def delete_novel(novel_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
     stmt = select(Novel).where(Novel.id == novel_id)
     result = await db.execute(stmt)
     novel = result.scalar_one()
-    await db.delete(novel)
+    db.delete(novel)
     await db.flush()
 
 
